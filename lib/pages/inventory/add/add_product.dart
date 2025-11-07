@@ -40,16 +40,28 @@ class _AddProductPageState extends State<AddProductPage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-            title: const Text('Tambah Produk'),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: const Text(
+              'Tambah Produk',
+              style: TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back, color: Colors.black87),
             onPressed: () {
               context.go('/inventory');
             },
             ),
-          bottom: const TabBar(
-            tabs: [
+          bottom: TabBar(
+            labelColor: Colors.lightGreen[700],
+            unselectedLabelColor: Colors.grey[600],
+            indicatorColor: Colors.lightGreen[700],
+            tabs: const [
               Tab(text: 'Barang', icon: Icon(Icons.inventory_2)),
               Tab(text: 'Kategori', icon: Icon(Icons.category)),
             ],

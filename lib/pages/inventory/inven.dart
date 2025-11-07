@@ -116,7 +116,9 @@ class InventoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // No need for Scaffold here - it's provided by the shell layout
-    return Padding(
+    return Container(
+      color: Colors.white,
+      child: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,32 +136,67 @@ class InventoryPage extends StatelessWidget {
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey[50],
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey[200]!,
+                                      width: 1,
+                                    ),
                                   ),
-                                  prefixIcon: const Icon(Icons.search),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey[200]!,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: Colors.lightGreen[700]!,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Colors.grey[600],
+                                  ),
                                   hintText: 'Cari produk...',
+                                  hintStyle: TextStyle(color: Colors.grey[400]),
                                   contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
-                                    vertical: 12,
+                                    vertical: 14,
                                   ),
                                 ),
                                 onSubmitted: (value) {},
                                 onChanged: (value) {},
                               ),
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: 12),
                             ElevatedButton.icon(
                               onPressed: () {
                                 context.go('/add_product');
                               },
-                              icon: const Icon(Icons.add),
-                              label: const Text('Tambah'),
+                              icon: const Icon(Icons.add, size: 20),
+                              label: const Text(
+                                'Tambah',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                ),
+                              ),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.lightGreen[700],
                                 foregroundColor: Colors.white,
+                                elevation: 0,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 14,
+                                ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
                             ),
@@ -197,6 +234,7 @@ class InventoryPage extends StatelessWidget {
             ),
           ],
         ),
-      );
+      ),
+    );
   }
 }

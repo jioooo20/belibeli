@@ -18,17 +18,16 @@ class AppRoutes {
 class ScaffoldWithNavigation extends StatelessWidget {
   final Widget child;
 
-  const ScaffoldWithNavigation({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
+  const ScaffoldWithNavigation({Key? key, required this.child})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(), // Always visible (like @section('header'))
       body: child, // This is like @yield('content') - changes per route
-      bottomNavigationBar: const Tabbar(), // Always visible (like @section('footer'))
+      bottomNavigationBar:
+          const Tabbar(), // Always visible (like @section('footer'))
     );
   }
 }
@@ -46,26 +45,38 @@ final goRouter = GoRouter(
       routes: [
         GoRoute(
           path: AppRoutes.home,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: const DashboardPage(),
-          ),
+          pageBuilder: (context, state) =>
+              NoTransitionPage(child: const DashboardPage()),
         ),
         GoRoute(
           path: AppRoutes.inventory,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: InventoryPage(),
-          ),
+          pageBuilder: (context, state) =>
+              NoTransitionPage(child: InventoryPage()),
         ),
         GoRoute(
           path: AppRoutes.sales,
           pageBuilder: (context, state) => const NoTransitionPage(
-            child: Center(child: Text('Sales Page')),
+            child: Center(
+              child: ColoredBox(
+                color: Colors.white,
+                child: SizedBox.expand(
+                  child: Center(child: Text('Sales Page')),
+                ),
+              ),
+            ),
           ),
         ),
         GoRoute(
           path: AppRoutes.history,
           pageBuilder: (context, state) => const NoTransitionPage(
-            child: Center(child: Text('History Page')),
+            child: Center(
+              child: ColoredBox(
+                color: Colors.white,
+                child: SizedBox.expand(
+                  child: Center(child: Text('History Page')),
+                ),
+              ),
+            ),
           ),
         ),
       ],
@@ -77,9 +88,6 @@ final goRouter = GoRouter(
       builder: (context, state) => const AddProductPage(),
     ),
   ],
-  errorBuilder: (context, state) => Scaffold(
-    body: Center(
-      child: Text('Error: ${state.error}'),
-    ),
-  ),
+  errorBuilder: (context, state) =>
+      Scaffold(body: Center(child: Text('Error: ${state.error}'))),
 );

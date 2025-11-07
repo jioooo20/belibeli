@@ -14,7 +14,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       elevation: 0,
+      scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
+      surfaceTintColor: Colors.transparent,
       iconTheme: const IconThemeData(color: Colors.black87),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
