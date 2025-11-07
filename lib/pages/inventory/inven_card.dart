@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 class InventoryCard extends StatelessWidget {
   final String productName;
+  final String? subProductName;
   final String category;
   final String buyPrice;
   final String sellPrice;
   final String stock;
-  final String imagePath;
+  final String? imagePath;
   final VoidCallback onEdit;
   final VoidCallback? onTap;
 
   const InventoryCard({
     super.key,
     required this.productName,
+    this.subProductName,
     required this.category,
     required this.buyPrice,
     required this.sellPrice,
@@ -52,7 +54,7 @@ class InventoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.grey[100],
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: AssetImage(imagePath ?? 'assets/default_image.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -63,15 +65,23 @@ class InventoryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      productName,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
+                    Row(
+                      children: [
+                      Expanded(
+                        child: Text(
+                        subProductName != null 
+                          ? '$productName | $subProductName'
+                          : productName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                      ],
                     ),
                     const SizedBox(height: 8),
                     Container(

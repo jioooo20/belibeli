@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'barang_tab.dart';
+import 'kategori_tab.dart';
 
 class AddProductPage extends StatefulWidget {
   const AddProductPage({super.key});
@@ -10,16 +12,12 @@ class AddProductPage extends StatefulWidget {
 
 class _AddProductPageState extends State<AddProductPage> {
   final List<String> _categories = [];
-  final TextEditingController _categoryController = TextEditingController();
   String? _selectedCategory;
 
-  void _addCategory() {
-    if (_categoryController.text.isNotEmpty) {
-      setState(() {
-        _categories.add(_categoryController.text);
-        _categoryController.clear();
-      });
-    }
+  void _addCategory(String categoryName) {
+    setState(() {
+      _categories.add(categoryName);
+    });
   }
 
   void _deleteCategory(int index) {
@@ -31,10 +29,10 @@ class _AddProductPageState extends State<AddProductPage> {
     });
   }
 
-  @override
-  void dispose() {
-    _categoryController.dispose();
-    super.dispose();
+  void _onCategoryChanged(String? value) {
+    setState(() {
+      _selectedCategory = value;
+    });
   }
 
   @override
@@ -60,135 +58,16 @@ class _AddProductPageState extends State<AddProductPage> {
         body: TabBarView(
           children: [
             // Tab 1 - Barang Form
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                child: ListView(
-                  children: [
-                    DropdownButtonFormField<String>(
-                      value: _selectedCategory,
-                      decoration: const InputDecoration(
-                        labelText: 'Kategori',
-                        border: OutlineInputBorder(),
-                      ),
-                      items: _categories.map((category) {
-                        return DropdownMenuItem(
-                          value: category,
-                          child: Text(category),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedCategory = value;
-                        });
-                      },
-                      hint: const Text('Pilih Kategori'),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Barang',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Harga Beli',
-                        border: OutlineInputBorder(),
-                        prefixText: 'Rp ',
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Harga Jual',
-                        border: OutlineInputBorder(),
-                        prefixText: 'Rp ',
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                        // TODO: Implement save functionality
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text('Simpan'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            BarangTab(
+              categories: _categories,
+              selectedCategory: _selectedCategory,
+              onCategoryChanged: _onCategoryChanged,
             ),
             // Tab 2 - Kategori Management
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: _categoryController,
-                          decoration: const InputDecoration(
-                            labelText: 'Kategori Baru',
-                            border: OutlineInputBorder(),
-                          ),
-                          onSubmitted: (_) => _addCategory(),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      ElevatedButton.icon(
-                        onPressed: _addCategory,
-                        icon: const Icon(Icons.add),
-                        label: const Text('Tambah'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const Divider(),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Daftar Kategori',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Expanded(
-                    child: _categories.isEmpty
-                        ? const Center(
-                            child: Text(
-                              'Belum ada kategori',
-                              style: TextStyle(color: Colors.grey, fontSize: 16),
-                            ),
-                          )
-                        : ListView.builder(
-                            itemCount: _categories.length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                child: ListTile(
-                                  leading: const Icon(Icons.category),
-                                  title: Text(_categories[index]),
-                                  trailing: IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () => _deleteCategory(index),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                  ),
-                ],
-              ),
+            KategoriTab(
+              categories: _categories,
+              onAddCategory: _addCategory,
+              onDeleteCategory: _deleteCategory,
             ),
           ],
         ),

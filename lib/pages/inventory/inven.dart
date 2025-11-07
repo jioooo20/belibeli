@@ -1,6 +1,6 @@
 import 'package:belibeli/component/appbar/appbar.dart';
 import 'package:belibeli/component/tabbar/tabbar.dart';
-import 'package:belibeli/pages/inventory/invenCard.dart';
+import 'package:belibeli/pages/inventory/inven_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,91 +9,104 @@ class InventoryPage extends StatelessWidget {
 
   final List<Map<String, String>> products = [
     {
-      'nama': 'Sosis Bakar | 500gr',
+      'nama': 'Sosis Bakar',
+      'jenis': '500gr',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 15.000',
       'harga': 'Rp 25.000',
       'stok': '20',
     },
     {
-      'nama': 'Nasi Goreng | 1 Porsi',
+      'nama': 'Nasi Goreng',
+      'jenis': '1 Porsi',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 8.000',
       'harga': 'Rp 15.000',
       'stok': '35',
     },
     {
-      'nama': 'Mie Ayam | 1 Porsi',
+      'nama': 'Mie Ayam',
+      'jenis': '1 Porsi',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 7.000',
       'harga': 'Rp 12.000',
       'stok': '50',
     },
     {
-      'nama': 'Es Teh Manis | 1 Gelas',
+      'nama': 'Es Teh Manis',
+      'jenis': '1 Gelas',
       'kategori': 'Minuman',
       'harga_beli': 'Rp 2.000',
       'harga': 'Rp 5.000',
       'stok': '100',
     },
     {
-      'nama': 'Bakso | 1 Porsi',
+      'nama': 'Bakso',
+      'jenis': '1 Porsi',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 10.000',
       'harga': 'Rp 18.000',
       'stok': '40',
     },
     {
-      'nama': 'Lumpia | 5 Buah',
+      'nama': 'Lumpia',
+      'jenis': '5 Buah',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 4.000',
       'harga': 'Rp 8.000',
       'stok': '60',
     },
     {
-      'nama': 'Jus Jeruk | 1 Gelas',
+      'nama': 'Jus Jeruk',
+      'jenis': '1 Gelas',
       'kategori': 'Minuman',
       'harga_beli': 'Rp 5.000',
       'harga': 'Rp 10.000',
       'stok': '45',
     },
     {
-      'nama': 'Perkedel | 6 Buah',
+      'nama': 'Perkedel',
+      'jenis': '6 Buah',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 3.500',
       'harga': 'Rp 7.000',
       'stok': '55',
     },
     {
-      'nama': 'Kopi Hitam | 1 Cangkir',
+      'nama': 'Kopi Hitam',
+      'jenis': '1 Cangkir',
       'kategori': 'Minuman',
       'harga_beli': 'Rp 3.000',
       'harga': 'Rp 6.000',
       'stok': '80',
     },
     {
-      'nama': 'Tahu Goreng | 1 Porsi',
+      'nama': 'Tahu Goreng',
+      'jenis': '1 Porsi',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 4.000',
       'harga': 'Rp 8.000',
       'stok': '70',
     },
     {
-      'nama': 'Sambal Matah | 200gr',
+      'nama': 'Sambal Matah',
+      'jenis': '200gr',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 5.000',
       'harga': 'Rp 9.000',
       'stok': '30',
     },
     {
-      'nama': 'Wedang Ronde | 1 Mangkok',
+      'nama': 'Wedang Ronde',
+      'jenis': '1 Mangkok',
       'kategori': 'Minuman',
       'harga_beli': 'Rp 3.500',
       'harga': 'Rp 7.000',
       'stok': '25',
     },
     {
-      'nama': 'Gado-gado | 1 Porsi',
+      'nama': 'Gado-gado',
+      'jenis': '1 Porsi',
       'kategori': 'Makanan',
       'harga_beli': 'Rp 6.000',
       'harga': 'Rp 11.000',
@@ -170,6 +183,7 @@ class InventoryPage extends StatelessWidget {
                         final product = products[index];
                         return InventoryCard(
                           productName: product['nama']!,
+                          subProductName: product['jenis']!,
                           category: product['kategori']!,
                           buyPrice: product['harga_beli']!,
                           sellPrice: product['harga']!,
