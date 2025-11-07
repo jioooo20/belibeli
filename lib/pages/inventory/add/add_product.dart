@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'barang_tab.dart';
+import 'barang_tab/barang_tab.dart';
 import 'kategori_tab.dart';
 
 class AddProductPage extends StatefulWidget {
