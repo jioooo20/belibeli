@@ -60,7 +60,7 @@ final goRouter = GoRouter(
               child: ColoredBox(
                 color: Colors.white,
                 child: SizedBox.expand(
-                  child: Center(child: Text('Sales Page')),
+                  child: Center(child: Text('Halaman Penjualan')),
                 ),
               ),
             ),
@@ -73,7 +73,7 @@ final goRouter = GoRouter(
               child: ColoredBox(
                 color: Colors.white,
                 child: SizedBox.expand(
-                  child: Center(child: Text('History Page')),
+                  child: Center(child: Text('Halaman Riwayat')),
                 ),
               ),
             ),

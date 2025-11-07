@@ -62,28 +62,35 @@ class Tabbar extends StatelessWidget {
         backgroundColor: Colors.white,
         indicatorColor: Colors.lightGreen[100],
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.dashboard_rounded),
-            selectedIcon: Icon(Icons.dashboard_rounded, color: Colors.white),
-            label: 'Dashboard',
+        icon: Icon(Icons.dashboard_rounded),
+        selectedIcon: Icon(Icons.dashboard_rounded, color: Colors.green),
+        label: 'Dashboard',
           ),
           NavigationDestination(
-            icon: Icon(Icons.shopping_cart_rounded),
-            selectedIcon: Icon(Icons.shopping_cart_rounded, color: Colors.white),
-            label: 'Sales',
+        icon: Icon(Icons.shopping_cart_rounded),
+        selectedIcon: Icon(Icons.shopping_cart_rounded, color: Colors.green),
+        label: 'Penjualan',
           ),
           NavigationDestination(
-            icon: Icon(Icons.inventory_2_rounded),
-            selectedIcon: Icon(Icons.inventory_2_rounded, color: Colors.white),
-            label: 'Inventory',
+        icon: Icon(Icons.inventory_2_rounded),
+        selectedIcon: Icon(Icons.inventory_2_rounded, color: Colors.green),
+        label: 'Penyimpanan',
           ),
           NavigationDestination(
-            icon: Icon(Icons.history_rounded),
-            selectedIcon: Icon(Icons.history_rounded, color: Colors.white),
-            label: 'History',
+        icon: Icon(Icons.history_rounded),
+        selectedIcon: Icon(Icons.history_rounded, color: Colors.green),
+        label: 'Riwayat',
           ),
-        ],
+        ].map((destination) => NavigationDestination(
+          icon: destination.icon,
+          selectedIcon: destination.selectedIcon,
+          label: destination.label,
+        )).toList(),
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+          return const TextStyle(fontSize: 12, fontWeight: FontWeight.w800);
+        }),
       ),
     );
   }
