@@ -1,7 +1,7 @@
 import 'package:belibeli/component/appbar/appbar.dart';
 import 'package:belibeli/component/tabbar/tabbar.dart';
+import 'package:belibeli/pages/inventory/invenCard.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:go_router/go_router.dart';
 
 class InventoryPage extends StatelessWidget {
@@ -164,34 +164,25 @@ class InventoryPage extends StatelessWidget {
                   ),
 
                   Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        children: [
-                          ...products.map((product) {
-                            return Card(
-                              margin: const EdgeInsets.only(top: 8.0),
-                              child: GFListTile(
-                              avatar: const GFAvatar(
-                                backgroundImage: AssetImage(
-                                'img/placeholder.png',
-                                ),
-                                shape: GFAvatarShape.square,
-                              ),
-                              titleText: product['nama']!,
-                              subTitleText:
-                                'Kategori: ${product['kategori']} \nHarga Beli: ${product['harga_beli']} \nHarga Jual: ${product['harga']} \nStok: ${product['stok']}',
-                              icon: GFButton(
-                                onPressed: () {},
-                                text: 'Edit',
-                                color: Colors.lightGreen[700] ?? Colors.green,
-                              ),
-                              padding: const EdgeInsets.all(0),
-                              ),
-                            );
-                          }),
-                        ],
-                      ),
+                    child: ListView.builder(
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        final product = products[index];
+                        return InventoryCard(
+                          productName: product['nama']!,
+                          category: product['kategori']!,
+                          buyPrice: product['harga_beli']!,
+                          sellPrice: product['harga']!,
+                          stock: product['stok']!,
+                          imagePath: 'img/placeholder.png',
+                          onEdit: () {
+                            // Handle edit action
+                          },
+                          onTap: () {
+                            // Handle tap action
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
