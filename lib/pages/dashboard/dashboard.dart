@@ -1,5 +1,3 @@
-import 'package:belibeli/component/appbar/appbar.dart';
-import 'package:belibeli/component/tabbar/tabbar.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -9,13 +7,8 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
-      return Scaffold(
-        appBar: CustomAppBar(
-          onSettingsPressed: () {
-            // Handle settings navigation
-          },
-        ),
-      body: Container(
+    // No need for Scaffold here - it's provided by the shell layout
+    return Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -98,9 +91,7 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
         ),
-      ),
-      bottomNavigationBar: const Tabbar(),
-    );
+      );
   }
 
   Widget _buildSummaryCard(String title, String value, IconData icon, Color color) {

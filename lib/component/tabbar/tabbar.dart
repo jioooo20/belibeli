@@ -24,13 +24,13 @@ class Tabbar extends StatelessWidget {
         context.go('/');
         break;
       case 1:
-        // context.go('/sales');
+        context.go('/sales');
         break;
       case 2:
         context.go('/inventory');
         break;
       case 3:
-        // context.go('/history');
+        context.go('/history');
         break;
     }
   }

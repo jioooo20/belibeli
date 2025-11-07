@@ -1,5 +1,3 @@
-import 'package:belibeli/component/appbar/appbar.dart';
-import 'package:belibeli/component/tabbar/tabbar.dart';
 import 'package:belibeli/pages/inventory/inven_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -117,13 +115,8 @@ class InventoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: CustomAppBar(
-        onSettingsPressed: () {
-          // Handle settings navigation
-        },
-      ),
-      body: Padding(
+    // No need for Scaffold here - it's provided by the shell layout
+    return Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,8 +197,6 @@ class InventoryPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: const Tabbar(),
-    );
+      );
   }
 }
